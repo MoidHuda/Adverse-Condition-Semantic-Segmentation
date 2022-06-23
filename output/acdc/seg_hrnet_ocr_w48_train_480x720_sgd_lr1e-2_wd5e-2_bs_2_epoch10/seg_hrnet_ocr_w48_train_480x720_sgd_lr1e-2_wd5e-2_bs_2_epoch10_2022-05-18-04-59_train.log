@@ -1,0 +1,142 @@
+2022-05-18 04:59:41,826 Namespace(cfg='experiments/acdc/seg_hrnet_ocr_w48_train_480x720_sgd_lr1e-2_wd5e-2_bs_2_epoch10.yaml', seed=304, local_rank=0, opts=[])
+2022-05-18 04:59:41,826 AUTO_RESUME: False
+CUDNN:
+  BENCHMARK: True
+  DETERMINISTIC: False
+  ENABLED: True
+DATASET:
+  DATASET: acdc
+  EXTRA_TRAIN_SET: 
+  NUM_CLASSES: 19
+  ROOT: data/
+  TEST_SET: list/acdc/val.lst
+  TRAIN_SET: list/acdc/train.lst
+DEBUG:
+  DEBUG: False
+  SAVE_BATCH_IMAGES_GT: False
+  SAVE_BATCH_IMAGES_PRED: False
+  SAVE_HEATMAPS_GT: False
+  SAVE_HEATMAPS_PRED: False
+GPUS: (0,)
+LOG_DIR: log
+LOSS:
+  BALANCE_WEIGHTS: [0.4, 1]
+  CLASS_BALANCE: False
+  OHEMKEEP: 131072
+  OHEMTHRES: 0.9
+  USE_OHEM: False
+MODEL:
+  ALIGN_CORNERS: True
+  EXTRA:
+    FINAL_CONV_KERNEL: 1
+    STAGE1:
+      BLOCK: BOTTLENECK
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4]
+      NUM_CHANNELS: [64]
+      NUM_MODULES: 1
+      NUM_RANCHES: 1
+    STAGE2:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4]
+      NUM_BRANCHES: 2
+      NUM_CHANNELS: [48, 96]
+      NUM_MODULES: 1
+    STAGE3:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4]
+      NUM_BRANCHES: 3
+      NUM_CHANNELS: [48, 96, 192]
+      NUM_MODULES: 4
+    STAGE4:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4, 4]
+      NUM_BRANCHES: 4
+      NUM_CHANNELS: [48, 96, 192, 384]
+      NUM_MODULES: 3
+  NAME: seg_hrnet_ocr
+  NUM_OUTPUTS: 2
+  OCR:
+    DROPOUT: 0.05
+    KEY_CHANNELS: 256
+    MID_CHANNELS: 512
+    SCALE: 1
+  PRETRAINED: pretrained_models/hrnetv2_w48_imagenet_pretrained.pth
+OUTPUT_DIR: output
+PIN_MEMORY: True
+PRINT_FREQ: 10
+RANK: 0
+TEST:
+  BASE_SIZE: 2048
+  BATCH_SIZE_PER_GPU: 2
+  FLIP_TEST: False
+  IMAGE_SIZE: [720, 480]
+  MODEL_FILE: 
+  MULTI_SCALE: False
+  NUM_SAMPLES: 0
+  OUTPUT_INDEX: -1
+  SCALE_LIST: [1]
+TRAIN:
+  BASE_SIZE: 2048
+  BATCH_SIZE_PER_GPU: 2
+  BEGIN_EPOCH: 0
+  DOWNSAMPLERATE: 1
+  END_EPOCH: 10
+  EXTRA_EPOCH: 0
+  EXTRA_LR: 0.001
+  FLIP: True
+  FREEZE_EPOCHS: -1
+  FREEZE_LAYERS: 
+  IGNORE_LABEL: 255
+  IMAGE_SIZE: [720, 480]
+  LR: 0.01
+  LR_FACTOR: 0.1
+  LR_STEP: [90, 110]
+  MOMENTUM: 0.9
+  MULTI_SCALE: True
+  NESTEROV: False
+  NONBACKBONE_KEYWORDS: []
+  NONBACKBONE_MULT: 10
+  NUM_SAMPLES: 0
+  OPTIMIZER: sgd
+  RANDOM_BRIGHTNESS: False
+  RANDOM_BRIGHTNESS_SHIFT_VALUE: 10
+  RESUME: True
+  SCALE_FACTOR: 16
+  SHUFFLE: True
+  WD: 0.0005
+WORKERS: 2
+2022-05-18 04:59:41,846 Added key: store_based_barrier_key:1 to store for rank: 0
+2022-05-18 04:59:41,846 Rank 0: Completed store-based barrier for key:store_based_barrier_key:1 with 1 nodes.
+2022-05-18 04:59:42,212 => init weights from normal distribution
+2022-05-18 04:59:42,603 => loading pretrained model pretrained_models/hrnetv2_w48_imagenet_pretrained.pth
+2022-05-18 04:59:48,148 Epoch: [0/10] Iter:[0/166], Time: 3.23, lr: [0.01], Loss: 3.976870
+2022-05-18 04:59:51,495 Epoch: [0/10] Iter:[10/166], Time: 0.60, lr: [0.00994576676596272], Loss: 3.704543
+2022-05-18 04:59:54,836 Epoch: [0/10] Iter:[20/166], Time: 0.47, lr: [0.00989150065312514], Loss: 3.503824
+2022-05-18 04:59:58,138 Epoch: [0/10] Iter:[30/166], Time: 0.43, lr: [0.009837201440888748], Loss: 3.265034
+2022-05-18 05:00:01,496 Epoch: [0/10] Iter:[40/166], Time: 0.40, lr: [0.009782868905812038], Loss: 3.199895
+2022-05-18 05:00:04,774 Epoch: [0/10] Iter:[50/166], Time: 0.39, lr: [0.009728502821556094], Loss: 3.179687
+2022-05-18 05:00:08,143 Epoch: [0/10] Iter:[60/166], Time: 0.38, lr: [0.009674102958828782], Loss: 3.149761
+2022-05-18 05:00:11,535 Epoch: [0/10] Iter:[70/166], Time: 0.37, lr: [0.00961966908532751], Loss: 3.059481
+2022-05-18 05:00:14,909 Epoch: [0/10] Iter:[80/166], Time: 0.37, lr: [0.009565200965680509], Loss: 3.078575
+2022-05-18 05:00:18,295 Epoch: [0/10] Iter:[90/166], Time: 0.37, lr: [0.009510698361386604], Loss: 3.035827
+2022-05-18 05:00:21,618 Epoch: [0/10] Iter:[100/166], Time: 0.36, lr: [0.009456161030753403], Loss: 3.027027
+2022-05-18 05:00:25,042 Epoch: [0/10] Iter:[110/166], Time: 0.36, lr: [0.009401588728833841], Loss: 2.973227
+2022-05-18 05:00:28,546 Epoch: [0/10] Iter:[120/166], Time: 0.36, lr: [0.009346981207361089], Loss: 2.953746
+2022-05-18 05:00:31,938 Epoch: [0/10] Iter:[130/166], Time: 0.36, lr: [0.009292338214681686], Loss: 2.930626
+2022-05-18 05:00:35,299 Epoch: [0/10] Iter:[140/166], Time: 0.36, lr: [0.009237659495686903], Loss: 2.908132
+2022-05-18 05:00:38,737 Epoch: [0/10] Iter:[150/166], Time: 0.36, lr: [0.00918294479174225], Loss: 2.887425
+2022-05-18 05:00:42,101 Epoch: [0/10] Iter:[160/166], Time: 0.36, lr: [0.009128193840615069], Loss: 2.860116
+2022-05-18 05:01:24,955 0 [4.71242257e-01 4.11850834e-03 2.33670913e-01 0.00000000e+00
+ 1.44257540e-06 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 1.17305612e-02 0.00000000e+00 5.36814347e-01 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00] 0.06618831738588385
+2022-05-18 05:01:24,956 1 [0.40300509 0.         0.19462952 0.         0.         0.
+ 0.         0.         0.14760104 0.         0.49539793 0.
+ 0.         0.         0.         0.         0.         0.
+ 0.        ] 0.06529650429390373
+2022-05-18 05:01:24,956 => saving checkpoint to output/acdc/seg_hrnet_ocr_w48_train_480x720_sgd_lr1e-2_wd5e-2_bs_2_epoch10checkpoint.pth.tar
